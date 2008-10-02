@@ -1,0 +1,5 @@
+Things You'll need to do:
+
+1.	Copy all the files in "LIBs and DLLs" into the same folder as ur vproj (or sln, i cant remember)
+
+2.	In "Wiimote," under "USB API" you need to copy the .hs into your visual studio's "include" folder and place the libs you your visual studios "lib" folder
