@@ -23,7 +23,7 @@
 CGame::CGame(void)
 {
 	//Set Wrapper members to Null here
-	m_bIsWindowed = true;
+	//m_bIsWindowed = true;
 	m_pD3D = NULL;
 	m_pTM = NULL;
 	m_pDI = NULL;
