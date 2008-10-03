@@ -16,6 +16,8 @@
 //#include "CSGD_WaveManager.h"
 #include "../Wrappers/CSGD_DirectInput.h"
 
+#include "CMainMenuState.h"
+
 
 
 CGame::CGame(void)
@@ -67,6 +69,8 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 	m_pD3D->SpriteEnd();
 	m_pD3D->DeviceEnd();
 	m_pD3D->Present();*/
+
+	ChangeState( CMainMenuState::GetInstance() );
 
 	m_pDI = CSGD_DirectInput::GetInstance();
 	m_pDS = CSGD_DirectSound::GetInstance();
@@ -121,6 +125,7 @@ bool CGame::Main(void)
 	// remember last frames time stamp
 	m_dwPreviousTime = dwCurrentTime; 
 		
+
 	
 	//1.	INPUT
 
