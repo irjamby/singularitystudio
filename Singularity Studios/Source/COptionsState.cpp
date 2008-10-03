@@ -7,6 +7,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "COptionsState.h"
+#include "CMainMenuState.h"
 
 #include "..\Wrappers\CSGD_TextureManager.h"
 #include "..\Wrappers\CSGD_DirectInput.h"
@@ -87,7 +88,7 @@ bool COptionsState::Input(float fElapsedTime )
 		{
 		case 1:
 			m_nSelected = 0;
-			CGame::GetInstance()->PopState(  );
+			CGame::GetInstance()->ChangeState( CMainMenuState::GetInstance() );
 			break;		
 		}
 	}

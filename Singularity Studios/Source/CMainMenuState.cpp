@@ -91,7 +91,7 @@ bool CMainMenuState::Input(float fElapsedTime )
 		switch(m_nSelected)
 		{
 		case 1:
-			CGame::GetInstance()->PushState( COptionsState::GetInstance() );
+			CGame::GetInstance()->ChangeState( COptionsState::GetInstance() );
 			m_nSelected = 0;
 			break;
 		default:
