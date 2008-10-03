@@ -11,7 +11,7 @@
 
 #include "CSGD_FModManager.h"
 #include <assert.h>
-#include "..\game.h"
+#include "../Source/CGame.h"
 
 CSGD_FModManager CSGD_FModManager::m_pInstance;	//	initialization of single class instance 
 
@@ -188,16 +188,17 @@ bool CSGD_FModManager::PlaySound( int nID, bool bIsMusic)
 	//	hold on to channel pointer for late use
 	m_SoundList[ nID ].m_SoundChannels.push_back( channel );
 
-	if (bIsMusic)
+	// Add in once Sound is implemented
+	/*if (bIsMusic)
 	{
-		SetVolume(nID, (float)(game::GetInstance()->GetMusicLevel()/100.0f));
-		SetFrequency(nID, (float)(game::GetInstance()->GetFreqLevel()));
+		SetVolume(nID, (float)(CGame::GetInstance()->GetMusicLevel()/100.0f));
+		SetFrequency(nID, (float)(CGame::GetInstance()->GetFreqLevel()));
 	}
 	else
 	{
-		SetVolume(nID, (float)(game::GetInstance()->GetSFXLevel()/100.0f));
-		SetFrequency(nID, (float)(game::GetInstance()->GetFreqLevel()));
-	}
+		SetVolume(nID, (float)(CGame::GetInstance()->GetSFXLevel()/100.0f));
+		SetFrequency(nID, (float)(CGame::GetInstance()->GetFreqLevel()));
+	}*/
 
 	//	return success
 	return true;
