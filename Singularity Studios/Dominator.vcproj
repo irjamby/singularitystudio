@@ -183,6 +183,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Source\COptionsState.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Source\WinMain.cpp"
 				>
 			</File>
@@ -198,6 +202,10 @@
 			</File>
 			<File
 				RelativePath=".\Source\CMainMenuState.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Source\COptionsState.h"
 				>
 			</File>
 			<File

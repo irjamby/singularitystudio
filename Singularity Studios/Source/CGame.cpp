@@ -47,7 +47,7 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 	m_hWnd = hWnd;
 	SetScreenWidth(nScreenWidth);
 	SetScreenHeight(nScreenHeight);
-	bIsWindowed = m_bIsWindowed;
+	//bIsWindowed = m_bIsWindowed;
 
 	//TODO Init All Wrappers
 
