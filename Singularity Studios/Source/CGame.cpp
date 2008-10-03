@@ -7,7 +7,7 @@
 //			wrappers, and data that's continuous through-out the game.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "CGame.h"
-//#include "CWiimote.h"
+#include "CWiimote.h"
 
 //SGD Wrappers
 #include "../Wrappers/CSGD_Direct3D.h"
@@ -91,12 +91,12 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 	//m_cTransition = CTransitionScreen::GetInstance();
 	//m_fTransitionTimer = 0;
 
-	//CWiimote::GetInstance()->InitWiimote();
-	//if (CWiimote::GetInstance()->GetErr())
-	//{
+	CWiimote::GetInstance()->InitWiimote();
+	if (CWiimote::GetInstance()->GetErr())
+	{
 	//	//MessageBox(hWnd, "Wii-Remote Init Failed", "Wii-Remote Failed", MB_OK);
 	//	//exit(0);
-	//}
+	}
 	
 }
 
@@ -135,8 +135,8 @@ bool CGame::Main(void)
 		//TODO	Place any Input that's constant through-out
 		//		the entire game.
 		
-		//CWiimote* pWii = CWiimote::GetInstance();
-		//pWii->UpdateWiimote();
+		CWiimote* pWii = CWiimote::GetInstance();
+		pWii->UpdateWiimote();
 		
 		m_pDI->ReadDevices();
 

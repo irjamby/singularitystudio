@@ -234,6 +234,14 @@
 				RelativePath=".\Wrappers\CBitmapFont.h"
 				>
 			</File>
+			<File
+				RelativePath=".\Source\CWiimote.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source\CWiimote.h"
+				>
+			</File>
 			<Filter
 				Name="FMOD"
 				>

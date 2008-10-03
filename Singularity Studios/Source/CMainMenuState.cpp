@@ -12,6 +12,7 @@
 #include "..\Wrappers\CSGD_DirectInput.h"
 
 #include "..\Wrappers\CBitmapFont.h"
+#include "CWiimote.h"
 
 #include "CGame.h"
 
@@ -43,6 +44,7 @@ void CMainMenuState::Enter(void)
 	//	Load assets specific to state
 	m_pDI = CSGD_DirectInput::GetInstance();
 	m_pTM = CSGD_TextureManager::GetInstance();
+	m_pWii = CWiimote::GetInstance();
 
 	//	Load assets specific to state
 	m_nImageID = m_pTM->LoadTexture("Resource/SS_MenuCursor.png", D3DCOLOR_XRGB(0, 0, 0));
@@ -68,13 +70,13 @@ void CMainMenuState::Exit(void)
 
 bool CMainMenuState::Input(float fElapsedTime )
 {
-	if (m_pDI->KeyPressed(DIK_DOWN))
+	if (m_pDI->KeyPressed(DIK_DOWN) || m_pWii->IsButtonJustPressed(WII_DOWN))
 	{
 		m_nSelected++;
 		if (m_nSelected > 5)
 			m_nSelected = 0;
 	}
-	if (m_pDI->KeyPressed(DIK_UP))
+	if (m_pDI->KeyPressed(DIK_UP) || m_pWii->IsButtonJustPressed(WII_UP))
 	{	
 		m_nSelected--;
 		if (m_nSelected < 0)
@@ -83,7 +85,7 @@ bool CMainMenuState::Input(float fElapsedTime )
 
 
 
-	if (m_pDI->KeyPressed(DIK_RETURN))
+	if (m_pDI->KeyPressed(DIK_RETURN) || m_pWii->IsButtonJustPressed(WII_A))
 	{
 		switch(m_nSelected)
 		{
@@ -94,6 +96,11 @@ bool CMainMenuState::Input(float fElapsedTime )
 			break;
 		}
 	}
+
+	//HOME Button or ESC exits the program
+	if (m_pDI->KeyPressed(DIK_ESCAPE) || m_pWii->IsButtonJustPressed(WII_HOME))
+		return false;
+	
 
 
 	return true;

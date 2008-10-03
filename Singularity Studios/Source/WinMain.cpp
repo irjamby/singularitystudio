@@ -32,7 +32,7 @@ const char* WINDOW_TITLE	= "Blob Run";		//	Window Title.
 const int	WINDOW_WIDTH	= 800;					//	Window Width.
 const int	WINDOW_HEIGHT	= 600;					//	Window Height
 
-const BOOL	WINDOWED		= false;				//	Windowed or Full screen. START OFF FULLSCREEN
+const BOOL	WINDOWED		= true;				//	Windowed or Full screen. START OFF FULLSCREEN
 
 
 

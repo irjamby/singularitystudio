@@ -13,12 +13,14 @@
 class CSGD_TextureManager;
 class CSGD_DirectInput;
 class CBitmapFont;
+class CWiimote;
 
 class CMainMenuState : public IGameState
 {
 private:	
 
 	CBitmapFont* m_pFont;
+	CWiimote* m_pWii;
 
 	CSGD_DirectInput* m_pDI;
 	CSGD_TextureManager* m_pTM;
