@@ -105,9 +105,9 @@ void COptionsState::Render(void)
 	char buffer1[] = "Options Menu!";
 	m_pFont->DrawString(buffer1, 100, 100);
 	char buffer2[] = "Keys";
-	m_pFont->DrawString(buffer2, 25, 200);		
+	m_pFont->DrawString(buffer2, 100, 200);		
 	char buffer3[] = "Exit";
-	m_pFont->DrawString(buffer3, 25, 240);
+	m_pFont->DrawString(buffer3, 100, 240);
 
 	if (m_nSelected == 0)
 		m_pTM->Draw(m_nCursorID, 15, 200);

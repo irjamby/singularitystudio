@@ -23,7 +23,6 @@
 CGame::CGame(void)
 {
 	//Set Wrapper members to Null here
-	//m_bIsWindowed = true;
 	m_pD3D = NULL;
 	m_pTM = NULL;
 	m_pDI = NULL;
@@ -47,8 +46,7 @@ void CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nSc
 	m_hWnd = hWnd;
 	SetScreenWidth(nScreenWidth);
 	SetScreenHeight(nScreenHeight);
-	//bIsWindowed = m_bIsWindowed;
-
+	
 	//TODO Init All Wrappers
 
 	m_pD3D = CSGD_Direct3D::GetInstance();

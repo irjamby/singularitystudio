@@ -7,6 +7,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "CMainMenuState.h"
+#include "COptionsState.h"
 
 #include "..\Wrappers\CSGD_TextureManager.h"
 #include "..\Wrappers\CSGD_DirectInput.h"
@@ -90,6 +91,8 @@ bool CMainMenuState::Input(float fElapsedTime )
 		switch(m_nSelected)
 		{
 		case 1:
+			CGame::GetInstance()->PushState( COptionsState::GetInstance() );
+			m_nSelected = 0;
 			break;
 		default:
 			return false;
