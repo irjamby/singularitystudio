@@ -7,7 +7,7 @@ using std::multimap;
 using std::pair;
 using std::list;
 
-#include "../Source/CEvent.h"
+#include "CEvent.h"
 #include "../Source/IListener.h"
 
 class CSGD_EventSystem
