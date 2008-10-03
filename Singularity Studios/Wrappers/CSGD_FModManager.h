@@ -4,8 +4,6 @@
 //
 // Author:.... Robert Martinez (Bobby)
 //
-// Modifier:.. Keith Maggio (KM)
-//
 // Date:...... 12/29/2007 12:16:25 AM
 //
 // Purpose:.... fMod management class that wraps up core functionality for the fMod API
@@ -18,8 +16,8 @@
 #include <list>
 using std::vector;
 using std::list;
-#include "../fmod/fmod.hpp"
-#include "../fmod/fmod_errors.h"
+#include "fmod.hpp"
+#include "fmod_errors.h"
 
 #if _DEBUG
 	#pragma comment( lib, "fmodexL_vc.lib" ) 
@@ -38,10 +36,6 @@ using std::list;
 //	Macro to adjust how often Garbage(Handles) are collected
 #define TIMER_COUNT 5.0f
 
-
-//Enum containing types of sounds
-enum eSoundType { FM_SOUND = 0, FM_SONG };
-
 class CSGD_FModManager
 {
 	FMOD::System *m_pSystem;			//	Private instance of the FMod 'System' API
@@ -51,7 +45,6 @@ class CSGD_FModManager
 	{
 		char filename[_MAX_PATH];		//	The filename of this wave.
 		int	 ref;						//	The number of times this wave has be loaded.
-		int	 Soundtype;					//	KM - Specifies the type (Song or Sound) of the sound
 		FMOD_MODE unSoundFormat;		//	Sound description bitfields	
 		FMOD::Sound *fmSound;			//	Pointer to FMOD object
 
@@ -89,6 +82,7 @@ class CSGD_FModManager
 	virtual ~CSGD_FModManager( void );
 
 public:
+
 
 	////////////////////////////////////////////////////////////////////////
 	// Function:  CFModManager *GetInstance()
@@ -135,7 +129,7 @@ public:
 	//
 	//				NOTE: if you are returned -1, a failure has occured while loading a sound!
 	////////////////////////////////////////////////////////////////////////
-	int LoadSound(const char *szFilename, FMOD_MODE  unMode = FMOD_DEFAULT, int nSoundType = FM_SOUND);
+	int LoadSound(const char *szFilename, FMOD_MODE  unMode = FMOD_DEFAULT);
 
 	////////////////////////////////////////////////////////////////////////
 	// Function:  PlaySound()
@@ -149,7 +143,7 @@ public:
 	// Return - [bool]: true if sound was played
 	//						 false if there was an error
 	////////////////////////////////////////////////////////////////////////
-	bool PlaySound(int nID);
+	bool PlaySound(int nID, bool bIsMusic = false);
 
 	////////////////////////////////////////////////////////////////////////
 	// Function:  UnloadSound()
@@ -279,57 +273,12 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	bool ShutdownFModManager(void);
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Function: “GetSongInfo”
-	// Last Modified: August 30, 2008
-	// Purpose: Get the info of a song
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	tSoundInfo GetSongInfo(int nSongID)
-	{
-		return m_SoundList[nSongID];
-	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Function: “GetSongList”
-	// Last Modified: September 1, 2008
-	// Purpose: Get the vector of songs;
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	vector<tSoundInfo> GetSongList()
-	{
-		return m_SoundList;
-	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Function: “GetMinMaxFreq”
-	// Last Modified: September 9, 2008
-	// Purpose: Get the min and max frequencies of the sound card.
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	bool GetMinMaxFreq(int* min, int* max)
-	{
-		FMOD::System_Create(&m_pSystem);
-		//Get number of Drivers
-		int nDrivers = 0;
-		FMOD_RESULT Err = m_pSystem->getNumDrivers(&nDrivers);
-		if (FMOD_OK != Err)
-			return false;
-		Err = m_pSystem->getDriverCaps(nDrivers-1, NULL, min, max, NULL);
-		//Get Frequencies
-		if (FMOD_OK == Err)
-			return true;
-
-		return false;
-		
-		
-	}
-
-
-
 protected:
 	////////////////////////////////////////////////////////////////////////
 	// Function:  ReduceHandleCount()
 	// Last Modified : [1/10/2008 2:26:50 PM]
 	// 
-	// Purpose: Reduce the number of invaild channel handles used to play sounds
+	// Purpose: Reduce the number of invlaid channel handles used to play sounds
 	// 
 	// Function parameters : 
 	//   [] -

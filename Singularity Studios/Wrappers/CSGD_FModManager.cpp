@@ -11,6 +11,7 @@
 
 #include "CSGD_FModManager.h"
 #include <assert.h>
+#include "..\game.h"
 
 CSGD_FModManager CSGD_FModManager::m_pInstance;	//	initialization of single class instance 
 
@@ -57,7 +58,7 @@ bool CSGD_FModManager::InitFModManager( HWND hWnd, int nMaxChannels, FMOD_INITFL
 	return true;
 }
 
-int CSGD_FModManager::LoadSound(const char *szFilename, FMOD_MODE unMode, int nSoundType ) 
+int CSGD_FModManager::LoadSound(const char *szFilename, FMOD_MODE unMode ) 
 {
 	if( !m_pSystem ) return -1;
 
@@ -121,9 +122,6 @@ int CSGD_FModManager::LoadSound(const char *szFilename, FMOD_MODE unMode, int nS
 		//	set flags to the sound
 		newSound.unSoundFormat |= unMode;
 
-		//	set the type of sound playing
-		newSound.Soundtype = nSoundType;
-
 		// FMOD_DEFAULT uses the defaults.  These are the same as FMOD_LOOP_OFF | FMOD_2D | FMOD_HARDWARE
 		if( ( result = m_pSystem->createSound( newSound.filename, newSound.unSoundFormat, 0, &newSound.fmSound ) ) != FMOD_OK )
 		{
@@ -170,7 +168,7 @@ bool CSGD_FModManager::UnloadSound( int nID )
 	return bOutcome;
 }
 
-bool CSGD_FModManager::PlaySound( int nID ) 
+bool CSGD_FModManager::PlaySound( int nID, bool bIsMusic) 
 {
 	if( !m_pSystem ) return false;
 
@@ -189,6 +187,17 @@ bool CSGD_FModManager::PlaySound( int nID )
 
 	//	hold on to channel pointer for late use
 	m_SoundList[ nID ].m_SoundChannels.push_back( channel );
+
+	if (bIsMusic)
+	{
+		SetVolume(nID, (float)(game::GetInstance()->GetMusicLevel()/100.0f));
+		SetFrequency(nID, (float)(game::GetInstance()->GetFreqLevel()));
+	}
+	else
+	{
+		SetVolume(nID, (float)(game::GetInstance()->GetSFXLevel()/100.0f));
+		SetFrequency(nID, (float)(game::GetInstance()->GetFreqLevel()));
+	}
 
 	//	return success
 	return true;
