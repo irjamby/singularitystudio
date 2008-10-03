@@ -26,7 +26,7 @@ const char* CLASSNAME		= "BasicWindow";		//	Window Class Name.
 
 
 
-const char* WINDOW_TITLE	= "Blob Run";		//	Window Title.
+const char* WINDOW_TITLE	= "Dominator";		//	Window Title.
 
 
 const int	WINDOW_WIDTH	= 800;					//	Window Width.
